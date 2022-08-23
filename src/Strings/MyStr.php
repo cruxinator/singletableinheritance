@@ -14,7 +14,7 @@ class MyStr extends Str
      * @param string $search
      * @return string
      */
-    public static function afterLast(string $subject, string $search): string
+    public static function afterLast($subject, $search): string
     {
         if ($search === '') {
             return $subject;
@@ -36,7 +36,7 @@ class MyStr extends Str
      * @param string $search
      * @return string
      */
-    public static function beforeLast(string $subject, string $search): string
+    public static function beforeLast($subject, $search): string
     {
         if ($search === '') {
             return $subject;
@@ -59,7 +59,7 @@ class MyStr extends Str
      * @param string $to
      * @return string
      */
-    public static function between(string $subject, string $from, string $to): string
+    public static function between($subject, $from, $to): string
     {
         if ($from === '' || $to === '') {
             return $subject;
@@ -76,7 +76,7 @@ class MyStr extends Str
      * @param string $pad
      * @return string
      */
-    public static function padBoth(string $value, int $length, $pad = ' '): string
+    public static function padBoth($value, $length, $pad = ' '): string
     {
         return str_pad($value, $length, $pad, STR_PAD_BOTH);
     }
@@ -89,7 +89,7 @@ class MyStr extends Str
      * @param string $pad
      * @return string
      */
-    public static function padLeft(string $value, int $length, $pad = ' '): string
+    public static function padLeft($value, $length, $pad = ' '): string
     {
         return str_pad($value, $length, $pad, STR_PAD_LEFT);
     }
@@ -102,7 +102,7 @@ class MyStr extends Str
      * @param string $pad
      * @return string
      */
-    public static function padRight(string $value, int $length, string $pad = ' '): string
+    public static function padRight($value, $length, $pad = ' '): string
     {
         return str_pad($value, $length, $pad, STR_PAD_RIGHT);
     }
@@ -127,7 +127,7 @@ class MyStr extends Str
      * @param bool $ignoreCase
      * @return bool
      */
-    public static function containsAll(string $haystack, array $needles, bool $ignoreCase = false): bool
+    public static function containsAll($haystack, array $needles, bool $ignoreCase = false): bool
     {
         if ($ignoreCase) {
             $haystack = mb_strtolower($haystack);
@@ -149,7 +149,7 @@ class MyStr extends Str
      * @param string $value
      * @return bool
      */
-    public static function isAscii(string $value): bool
+    public static function isAscii($value): bool
     {
         //return ASCII::is_ascii((string) $value);
     }
@@ -160,7 +160,7 @@ class MyStr extends Str
      * @param string $value
      * @return bool
      */
-    public static function isUuid(string $value): bool
+    public static function isUuid($value): bool
     {
         if (! is_string($value)) {
             return false;
@@ -176,7 +176,7 @@ class MyStr extends Str
      * @param string $subject
      * @return string
      */
-    public static function match(string $pattern, string $subject): string
+    public static function match($pattern, $subject): string
     {
         preg_match($pattern, $subject, $matches);
 
@@ -194,7 +194,7 @@ class MyStr extends Str
      * @param string $subject
      * @return Collection
      */
-    public static function matchAll(string $pattern, string $subject): Collection
+    public static function matchAll($pattern, $subject): Collection
     {
         preg_match_all($pattern, $subject, $matches);
 
@@ -212,7 +212,7 @@ class MyStr extends Str
      * @param int $count
      * @return string
      */
-    public static function pluralStudly(string $value, int $count = 2): string
+    public static function pluralStudly($value, $count = 2): string
     {
         $parts = preg_split('/(.)(?=[A-Z])/u', $value, -1, PREG_SPLIT_DELIM_CAPTURE);
 
@@ -264,7 +264,7 @@ class MyStr extends Str
      * @param int|null $length
      * @return int
      */
-    public static function substrCount(string $haystack, string $needle, $offset = 0, int $length = null): int
+    public static function substrCount($haystack, $needle, $offset = 0, $length = null): int
     {
         if (! is_null($length)) {
             return substr_count($haystack, $needle, $offset, $length);
