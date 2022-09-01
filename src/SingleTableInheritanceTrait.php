@@ -4,6 +4,7 @@
 namespace Cruxinator\SingleTableInheritance;
 
 
+use Cruxinator\SingleTableInheritance\Exceptions\StateException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Cruxinator\SingleTableInheritance\Exceptions\SingleTableInheritanceException;
@@ -65,6 +66,7 @@ trait SingleTableInheritanceTrait
      *
      * @return array the type map
      * @throws WrongInheritanceException
+     * @throws StateException
      */
     public static function getSingleTableTypeMap(): array
     {
@@ -101,6 +103,9 @@ trait SingleTableInheritanceTrait
             if (!in_array($calledClass, $subclasses)) {
                 foreach ($subclasses as $subclass) {
                     if (!is_subclass_of($subclass, $calledClass)) {
+                        if (!class_exists($subclass)) {
+                            throw new StateException('Subclass ' . $subclass . ' not defined.');
+                        }
                         throw new WrongInheritanceException('Subclass must extend its parent class.');
                     }
                     $typeMap = $typeMap + $subclass::getSingleTableTypeMap();
